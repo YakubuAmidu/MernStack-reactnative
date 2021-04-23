@@ -1,1 +1,1 @@
-Easy-shop;
+Easy-shop.

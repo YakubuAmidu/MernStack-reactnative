@@ -28,7 +28,7 @@ router.post(`/`, async (req, res) => {
     color: req.body.color,
   });
   category = await category.save();
-  if (!category) return res.status(404).send('The category cannot be created!');
+  if (!category) return res.status(400).send('The category cannot be created!');
   res.send(category);
 });
 
@@ -47,7 +47,7 @@ router.put(`/:id`, async (req, res) => {
 });
 
 router.delete(`/:id`, (req, res) => {
-  Category.findOneAndDelete(req.params.id).then((category) => {
+  Category.findByIdAndRemove(req.params.id).then((category) => {
     if (category) {
       return res
         .status(200)
