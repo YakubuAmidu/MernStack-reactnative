@@ -13,10 +13,13 @@ const productSchema = mongoose.Schema({
     type: String,
     default: '',
   },
+  image: {
+    type: String,
+    default: '',
+  },
   images: [
     {
       type: String,
-      default: '',
     },
   ],
   brand: {
@@ -24,7 +27,7 @@ const productSchema = mongoose.Schema({
     default: '',
   },
   price: {
-    type: String,
+    type: Number,
     default: 0,
   },
   category: {
@@ -42,7 +45,7 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-  numbReview: {
+  numReviews: {
     type: Number,
     default: 0,
   },
@@ -61,7 +64,7 @@ productSchema.virtual('id').get(function () {
 });
 
 productSchema.set('toJSON', {
-  virtual: true,
+  virtuals: true,
 });
 
 exports.Product = mongoose.model('Product', productSchema);
