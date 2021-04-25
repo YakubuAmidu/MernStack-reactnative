@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -14,8 +14,8 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   phone: {
-    type: Number,
-    require: true,
+    type: String,
+    required: true,
   },
   isAdmin: {
     type: Boolean,
@@ -30,7 +30,7 @@ const userSchema = mongoose.Schema({
     default: '',
   },
   zip: {
-    type: Number,
+    type: String,
     default: '',
   },
   city: {
@@ -48,7 +48,7 @@ userSchema.virtual('id').get(function () {
 });
 
 userSchema.set('toJSON', {
-  virtual: true,
+  virtuals: true,
 });
 
 exports.User = mongoose.model('User', userSchema);
