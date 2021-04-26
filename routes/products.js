@@ -3,6 +3,19 @@ const express = require('express');
 const { Category } = require('../models/category');
 const router = express.Router();
 const mongoose = require('mongoose');
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + '-' + uniqueSuffix);
+  },
+});
+
+var upload = multer({ storage: storage });
 
 router.get(`/`, async (req, res) => {
   // localhost:3000/api/v1/products?categories=2342342,234234
